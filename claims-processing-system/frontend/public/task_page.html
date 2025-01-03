@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management - Claims Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .task-card {
+            transition: transform 0.2s;
+        }
+        .task-card:hover {
+            transform: translateY(-2px);
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #E5E7EB;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line"></i> Krutrim
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="knowledge_base.html">Knowledge Base</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="callback_schedule.html">Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="settings.html">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manage_claims.html">Manage Claims</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="task_page.html">Task Management</a>
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Profile Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container py-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h2 text-dark">Task Management</h1>
+                <div class="input-group w-50">
+                    <input type="text" class="form-control" placeholder="Search tasks...">
+                    <span class="input-group-text bg-white border-0">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-4">
+        <!-- Progress Overview -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Overall Progress</h5>
+                        <p class="h3 text-primary">75%</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Tasks Completed</h5>
+                        <p class="h3 text-success">45/60</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Tasks</h5>
+                        <p class="h3 text-warning">15</p>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option>All Categories</option>
+                            <option>Pending Callbacks</option>
+                            <option>Claims Under Review</option>
+                            <option>Resolved Claims</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option>All Priorities</option>
+                            <option>High</option>
+                            <option>Medium</option>
+                            <option>Low</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option>Sort By</option>
+                            <option>Deadline (Earliest)</option>
+                            <option>Priority (Highest)</option>
+                            <option>Recently Updated</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Categories -->
+        <div class="mb-4">
+            <!-- Pending Callbacks -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">Pending Callbacks</h2>
+                </div>
+                <div class="card-body">
+                    <div class="task-card card mb-3">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <input type="checkbox" class="form-check-input me-3">
+                                <div>
+                                    <h5 class="card-title mb-1">Follow up with John Smith</h5>
+                                    <p class="card-text text-muted mb-0">Claim #CLM-2023-001</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-danger me-3">High Priority</span>
+                                <button class="btn btn-link text-muted"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <span class="text-muted"><i class="far fa-clock me-2"></i>Due in 2 hours</span>
+                            <div>
+                                <button class="btn btn-link text-primary">Reschedule</button>
+                                <button class="btn btn-link text-success">Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Claims Under Review -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">Claims Under Review</h2>
+                </div>
+                <div class="card-body">
+                    <div class="task-card card mb-3">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <input type="checkbox" class="form-check-input me-3">
+                                <div>
+                                    <h5 class="card-title mb-1">Review Claim Documentation</h5>
+                                    <p class="card-text text-muted mb-0">Claim #CLM-2023-002</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-warning me-3">Medium Priority</span>
+                                <button class="btn btn-link text-muted"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <span class="text-muted"><i class="far fa-calendar me-2"></i>Due tomorrow</span>
+                            <div>
+                                <button class="btn btn-link text-primary">View Details</button>
+                                <button class="btn btn-link text-success">Complete Review</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="text-muted">Showing <span class="fw-bold">1</span> to <span class="fw-bold">10</span> of <span class="fw-bold">45</span> tasks</p>
+            <div>
+                <button class="btn btn-outline-secondary">Previous</button>
+                <button class="btn btn-outline-secondary">Next</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-top mt-4">
+        <div class="container py-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="text-muted mb-0">© 2024 Claims Platform. All rights reserved.</p>
+                <div>
+                    <a href="#" class="text-muted me-3">Help</a>
+                    <a href="#" class="text-muted">Settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

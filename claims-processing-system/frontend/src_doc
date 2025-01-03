@@ -1,0 +1,4 @@
+mkdir -p claims-processing-system/frontend/src/components
+mkdir -p claims-processing-system/frontend/src/pages
+mkdir -p claims-processing-system/frontend/src/services
+mkdir -p claims-processing-system/frontend/src/utils

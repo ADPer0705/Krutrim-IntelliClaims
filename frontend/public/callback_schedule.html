@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback Scheduling</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .fc-event {
+            cursor: pointer;
+        }
+        .list-item {
+            transition: transform 0.2s;
+        }
+        .list-item:hover {
+            transform: translateX(5px);
+        }
+        .priority-high {
+            background-color: #dc3545;
+            color: white;
+        }
+        .priority-medium {
+            background-color: #ffc107;
+            color: black;
+        }
+        .priority-low {
+            background-color: #28a745;
+            color: white;
+        }
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        @media (max-width: 768px) {
+            .calendar-container {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="KRUTRIM.html">
+                <i class="fas fa-chart-line"></i> Krutrim
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="knowledge_base.html">Knowledge Base</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="callback_schedule.html">Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="settings.html">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manage_claims.html">Manage Claims</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="task_page.html">Task Management</a>
+                    </li>
+                </ul>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Profile Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Calendar View -->
+            <div class="col-md-7 calendar-container">
+                <div id="calendar" class="bg-white p-3 rounded shadow-sm"></div>
+            </div>
+
+            <!-- List View -->
+            <div class="col-md-5">
+                <div class="bg-white p-3 rounded shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Scheduled Callbacks</h5>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Sort by
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Date</a></li>
+                                <li><a class="dropdown-item" href="#">Priority</a></li>
+                                <li><a class="dropdown-item" href="#">Agent Name</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <div class="list-group-item list-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <a href="claim_details.html">
+                                        <h6 class="mb-1">John Doe</h6>
+                                    </a>
+                                    <small class="text-muted">2023-10-20 10:00 AM</small>
+                                </div>
+                                <div>
+                                    <span class="badge priority-high">High</span>
+                                    <div class="btn-group ms-2">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#" onclick="setPriority('high')">Set High Priority</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="setPriority('medium')">Set Medium Priority</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="setPriority('low')">Set Low Priority</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="#" onclick="assignToAgent()">Assign to Another Agent</a></li>
+                                            </ul>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger" onclick="cancelCallback()">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item list-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <a href="claim_details.html">
+                                        <h6 class="mb-1">Jane Smith</h6>
+                                    </a>
+                                    <small class="text-muted">2023-10-22 02:00 PM</small>
+                                </div>
+                                <div>
+                                    <span class="badge priority-medium">Medium</span>
+                                    <div class="btn-group ms-2">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#" onclick="setPriority('high')">Set High Priority</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="setPriority('medium')">Set Medium Priority</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="setPriority('low')">Set Low Priority</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="#" onclick="assignToAgent()">Assign to Another Agent</a></li>
+                                            </ul>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger" onclick="cancelCallback()">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="btn btn-primary btn-lg floating-btn rounded-circle shadow" data-bs-toggle="modal" data-bs-target="#settingsModal">
+        <i class="fas fa-cog"></i>
+    </button>
+
+    <!-- Settings Modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Settings & Preferences</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Automation Rules</label>
+                        <select class="form-select">
+                            <option>Standard Automation</option>
+                            <option>Custom Rules</option>
+                            <option>Manual Scheduling Only</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Notification Settings</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="emailNotifications">
+                            <label class="form-check-label" for="emailNotifications">Email Notifications</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="pushNotifications">
+                            <label class="form-check-label" for="pushNotifications">Push Notifications</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">User Permissions</label>
+                        <select class="form-select">
+                            <option>Standard Access</option>
+                            <option>Manager Access</option>
+                            <option>Admin Access</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FullCalendar Script -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: [
+                    {
+                        title: 'John Doe',
+                        start: '2023-10-20T10:00:00',
+                        extendedProps: {
+                            priority: 'High'
+                        }
+                    },
+                    {
+                        title: 'Jane Smith',
+                        start: '2023-10-22T14:00:00',
+                        extendedProps: {
+                            priority: 'Medium'
+                        }
+                    }
+                ],
+                eventContent: function(arg) {
+                    let priorityBadge = document.createElement('span');
+                    priorityBadge.className = 'badge ' + 
+                        (arg.event.extendedProps.priority === 'High' ? 'priority-high' :
+                         arg.event.extendedProps.priority === 'Medium' ? 'priority-medium' : 'priority-low');
+                    priorityBadge.textContent = arg.event.extendedProps.priority;
+
+                    let eventContent = document.createElement('div');
+                    eventContent.className = 'd-flex flex-column';
+                    eventContent.innerHTML = `
+                        <div><a href="claim_details.html">${arg.event.title}</a></div>
+                        <div>${arg.timeText}</div>
+                    `;
+                    eventContent.appendChild(priorityBadge);
+
+                    return { domNodes: [eventContent] };
+                }
+            });
+            calendar.render();
+        });
+
+        function setPriority(priority) {
+            // Implement priority setting logic
+            alert('Setting priority to ' + priority);
+        }
+
+        function assignToAgent() {
+            // Implement agent assignment logic
+            alert('Assigning to another agent');
+        }
+
+        function cancelCallback() {
+            // Implement cancellation logic
+            if (confirm('Are you sure you want to cancel this callback?')) {
+                alert('Callback cancelled');
+            }
+        }
+    </script>
+</body>
+</html>

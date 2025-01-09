@@ -1,0 +1,15 @@
+services:
+  dash-app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    command: python app.py
+    volumes:
+      - ../frontend:/app
+    ports:
+      - "8050:8050"
+    environment:
+      - DASH_DEBUG_MODE=True
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+# ...existing code...

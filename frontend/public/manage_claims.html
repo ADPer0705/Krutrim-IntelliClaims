@@ -40,7 +40,7 @@
     <!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
-            <a class="navbar-brand" href="KRUTRIM.html">
+            <a class="navbar-brand" href="dashboard.html">
                 <i class="fas fa-chart-line"></i> Krutrim
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -124,6 +124,78 @@
             </div>
         </div>
 
+        <!-- Recently Managed Claims Section -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Recently Managed Claims</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Claim ID</th>
+                                <th scope="col">Client Name</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Last Updated</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="claim_details_CLM-2023-010.html">CLM-2023-010</a></td>
+                                <td>Emily Clark</td>
+                                <td><span class="badge badge-in-progress">In Progress</span></td>
+                                <td>2023-12-03</td>
+                                <td><a href="claim_details_CLM-2023-010.html" class="btn btn-link">View</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="claim_details_CLM-2023-011.html">CLM-2023-011</a></td>
+                                <td>Michael Brown</td>
+                                <td><span class="badge badge-resolved">Resolved</span></td>
+                                <td>2023-12-02</td>
+                                <td><a href="claim_details_CLM-2023-011.html" class="btn btn-link">View</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- High Priority Claims Section -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">High Priority Claims</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Claim ID</th>
+                                <th scope="col">Client Name</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Last Updated</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="claim_details_CLM-2023-012.html">CLM-2023-012</a></td>
+                                <td>Sarah Connor</td>
+                                <td><span class="badge badge-high-priority">High Priority</span></td>
+                                <td>2023-12-04</td>
+                                <td><a href="claim_details_CLM-2023-012.html" class="btn btn-link">View</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="claim_details_CLM-2023-013.html">CLM-2023-013</a></td>
+                                <td>John Doe</td>
+                                <td><span class="badge badge-high-priority">High Priority</span></td>
+                                <td>2023-12-05</td>
+                                <td><a href="claim_details_CLM-2023-013.html" class="btn btn-link">View</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <!-- Filters -->
         <div class="card shadow-sm mb-4">
             <div class="card-body">
@@ -188,7 +260,7 @@
                         <!-- Sample Row 1 -->
                         <tr>
                             <td><input type="checkbox" class="form-check-input"></td>
-                            <td>CLM-2023-001</td>
+                            <td><a href="claim_details_CLM-2023-001.html">CLM-2023-001</a></td>
                             <td>John Smith</td>
                             <td><span class="badge badge-high-priority">High Priority</span></td>
                             <td><i class="fas fa-frown sentiment-negative"></i></td>
@@ -202,7 +274,7 @@
                         <!-- Sample Row 2 -->
                         <tr>
                             <td><input type="checkbox" class="form-check-input"></td>
-                            <td>CLM-2023-002</td>
+                            <td><a href="claim_details_CLM-2023-002.html">CLM-2023-002</a></td>
                             <td>Jane Doe</td>
                             <td><span class="badge badge-in-progress">In Progress</span></td>
                             <td><i class="fas fa-smile sentiment-positive"></i></td>

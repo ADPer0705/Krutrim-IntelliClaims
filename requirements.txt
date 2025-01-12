@@ -1,2 +1,9 @@
-dash==2.0.0
-dash-bootstrap-components==1.0.0
+rasa-sdk
+librosa
+whisper
+nltk
+matplotlib
+numpy
+dash
+pandas
+webrtcvad

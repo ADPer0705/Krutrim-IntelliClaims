@@ -1,0 +1,81 @@
+<svg viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Layer -->
+    <rect width="1000" height="800" fill="#f8faff"/>
+    
+    <!-- Title -->
+    <text x="500" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a365d">Claims Processing Flow </text>
+    <text x="500" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#4a5568">Sample Claim: Anita's Knee Replacement Claim</text>
+
+    <!-- Legacy System Integration Layer -->
+    <rect x="50" y="100" width="900" height="650" rx="15" fill="#e2e8f0" stroke="#718096" stroke-width="2"/>
+    <text x="100" y="130" font-size="18" font-weight="bold" fill="#2d3748">Cross-CRM Integration Layer</text>
+    
+    <!-- AI Core System -->
+    <rect x="100" y="150" width="800" height="550" rx="10" fill="#ebf8ff" stroke="#4299e1" stroke-width="2"/>
+    <text x="150" y="180" font-size="16" font-weight="bold" fill="#2b6cb0">Krutrim AI Core</text>
+    
+    <!-- Customer Entry Point -->
+    <circle cx="150" cy="250" r="30" fill="#fed7d7"/>
+    <text x="150" y="255" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748">Anita</text>
+    
+    <!-- Chatbot System -->
+    <rect x="250" y="220" width="150" height="80" rx="8" fill="#b2f5ea"/>
+    <text x="325" y="250" text-anchor="middle" font-size="14" font-weight="bold" fill="#234e52">Krutrim Assist</text>
+    <text x="325" y="270" text-anchor="middle" font-size="10" font-weight="bold" fill="#234e52">Rasa NLU Engine</text>
+    
+    <!-- AI Processing Hub -->
+    <path d="M450 200 Q500 180 550 200 Q600 180 650 200 Q680 220 650 240 Q680 260 650 280 Q600 300 550 280 Q500 300 450 280 Q420 260 450 240 Q420 220 450 200" fill="#c3dafe"/>
+    <text x="550" y="235" text-anchor="middle" font-size="14" font-weight="bold" fill="#3730a3">AI Processing Hub</text>
+    <text x="550" y="255" text-anchor="middle" font-size="10" font-weight="bold" fill="#3730a3">Krutrim Live Sentiment Analysis Engine </text>
+    
+    <!-- IVR System -->
+    <polygon points="500,350 600,350 650,400 600,450 500,450 450,400" fill="#feebc8"/>
+    <text x="550" y="390" text-anchor="middle" font-size="14" font-weight="bold" fill="#7b341e">Smart IVR</text>
+    <text x="550" y="410" text-anchor="middle" font-size="10" font-weight="bold" fill="#7b341e">Wav2Vec Processing</text>
+    
+    <!-- Knowledge Base -->
+    <circle cx="750" cy="300" r="50" fill="#fbd38d"/>
+    <text x="750" y="295" text-anchor="middle" font-size="14" font-weight="bold" fill="#7b341e">Knowledge Base</text>
+    <text x="750" y="315" text-anchor="middle" font-size="10" font-weight="bold" fill="#7b341e">AI-Driven Insights</text>
+    
+    <!-- Executive Dashboard -->
+    <rect x="400" y="500" width="200" height="100" rx="8" fill="#9ae6b4"/>
+    <text x="500" y="530" text-anchor="middle" font-size="14" font-weight="bold" fill="#22543d">ML-Powered Dashboard</text>
+    <text x="500" y="550" text-anchor="middle" font-size="10" font-weight="bold" fill="#22543d">Real-time Sentiment Tracking</text>
+    <text x="500" y="570" text-anchor="middle" font-size="10" font-weight="bold" fill="#22543d">Predictive Analytics</text>
+    
+    <!-- Legacy System Connections -->
+    <rect x="700" y="500" width="150" height="80" rx="8" fill="#cbd5e0"/>
+    <text x="775" y="530" text-anchor="middle" font-size="12" font-weight="bold" fill="#2d3748">Legacy CRM</text>
+    <text x="775" y="550" text-anchor="middle" font-size="10" font-weight="bold" fill="#2d3748">Claims Database</text>
+    
+    <!-- Connection Lines -->
+    <path d="M180 250 L250 260" stroke="#4a5568" stroke-width="2" fill="none"/>
+    <path d="M400 260 L450 240" stroke="#4a5568" stroke-width="2" fill="none"/>
+    <path d="M650 240 L700 300" stroke="#4a5568" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+    <path d="M550 280 L550 350" stroke="#4a5568" stroke-width="2" fill="none"/>
+    <path d="M550 450 L500 500" stroke="#4a5568" stroke-width="2" fill="none"/>
+    <path d="M600 550 L700 540" stroke="#4a5568" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+    
+    <!-- Technical Callouts -->
+    <!-- NLU Process -->
+    <rect x="50" y="650" width="200" height="80" rx="5" fill="white" stroke="#4a5568"/>
+    <text x="60" y="670" font-size="12" font-weight="bold" fill="#2d3748">NLU Processing:</text>
+    <text x="60" y="690" font-size="10" font-weight="bold" fill="#4a5568">• Intent: Claim Denial</text>
+    <text x="60" y="705" font-size="10" font-weight="bold" fill="#4a5568">• Entities: Policy, Procedure</text>
+    <text x="60" y="720" font-size="10" font-weight="bold" fill="#4a5568">• Sentiment: High Urgency</text>
+    
+    <!-- IVR Details -->
+    <rect x="300" y="650" width="200" height="80" rx="5" fill="white" stroke="#4a5568"/>
+    <text x="310" y="670" font-size="12" font-weight="bold" fill="#2d3748">Voice Processing:</text>
+    <text x="310" y="690" font-size="10" font-weight="bold" fill="#4a5568">• Biometric Verification</text>
+    <text x="310" y="705" font-size="10" font-weight="bold" fill="#4a5568">• Context Gathering</text>
+    <text x="310" y="720" font-size="10" font-weight="bold" fill="#4a5568">• Real-time Sentiment</text>
+    
+    <!-- Integration Features -->
+    <rect x="550" y="650" width="200" height="80" rx="5" fill="white" stroke="#4a5568"/>
+    <text x="560" y="670" font-size="12" font-weight="bold" fill="#2d3748">System Integration:</text>
+    <text x="560" y="690" font-size="10" font-weight="bold" fill="#4a5568">• Cross-CRM Sync</text>
+    <text x="560" y="705" font-size="10" font-weight="bold" fill="#4a5568">• Real-time Updates</text>
+    <text x="560" y="720" font-size="10" font-weight="bold" fill="#4a5568">• Secure Document Flow</text>
+</svg>
